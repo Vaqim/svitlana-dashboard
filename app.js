@@ -124,11 +124,6 @@
         const newTheme = isDark ? 'theme-light' : 'theme-dark';
         document.body.className = newTheme;
         localStorage.setItem('dashboard_theme', newTheme);
-
-        // Переініціалізація віджета погоди для підлаштування під тему
-        if (typeof window.__weatherwidget_init === 'function') {
-          window.__weatherwidget_init();
-        }
       });
     }
   }
@@ -173,19 +168,19 @@
    * Налаштування кнопок швидкого переходу для віджетів
    */
   function setupWidgetActions() {
-    // Відкриття Alerts.in.ua
+    // Відкриття Карти тривог MAPA.UA
     if (openAlertsBtn) {
       openAlertsBtn.addEventListener('click', (e) => {
         e.stopPropagation();
-        window.open('https://alerts.in.ua/', '_blank', 'noopener,noreferrer');
+        window.open('https://mapa.ua/', '_blank', 'noopener,noreferrer');
       });
     }
 
-    // Відкриття Sinoptik Черкаси
+    // Відкриття прогнозу погоди Черкаси
     if (openWeatherBtn) {
       openWeatherBtn.addEventListener('click', (e) => {
         e.stopPropagation();
-        window.open('https://sinoptik.ua/pohoda/cherkasy', '_blank', 'noopener,noreferrer');
+        window.open('https://weatherandtime.net/uk/weather/cherkasy-35348', '_blank', 'noopener,noreferrer');
       });
     }
   }
