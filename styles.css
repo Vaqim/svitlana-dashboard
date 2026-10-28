@@ -1,0 +1,760 @@
+/* ==========================================================================
+   Головні змінні тем оформлення (Design Tokens)
+   ========================================================================== */
+:root {
+  --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+}
+
+/* Темна тема (за замовчуванням) */
+body.theme-dark {
+  --bg-page: #0b0f17;
+  --bg-card: rgba(18, 24, 38, 0.85);
+  --bg-card-hover: rgba(24, 32, 52, 0.95);
+  --bg-header: rgba(15, 23, 42, 0.8);
+  --bg-input: rgba(30, 41, 59, 0.7);
+  --bg-input-focus: rgba(30, 41, 59, 0.95);
+  --bg-badge: rgba(56, 189, 248, 0.12);
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-card-hover: rgba(56, 189, 248, 0.4);
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --text-faint: #64748b;
+  --accent-color: #38bdf8;
+  --accent-glow: rgba(56, 189, 248, 0.25);
+  --pulse-color: #ef4444;
+  --shadow-card: 0 4px 20px -2px rgba(0, 0, 0, 0.35);
+  --shadow-card-hover: 0 12px 28px -4px rgba(0, 0, 0, 0.5), 0 0 20px var(--accent-glow);
+}
+
+/* Світла тема */
+body.theme-light {
+  --bg-page: #f1f5f9;
+  --bg-card: rgba(255, 255, 255, 0.9);
+  --bg-card-hover: #ffffff;
+  --bg-header: rgba(255, 255, 255, 0.85);
+  --bg-input: #ffffff;
+  --bg-input-focus: #ffffff;
+  --bg-badge: rgba(2, 132, 199, 0.1);
+  --border-color: rgba(0, 0, 0, 0.08);
+  --border-card-hover: rgba(2, 132, 199, 0.4);
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --text-faint: #94a3b8;
+  --accent-color: #0284c7;
+  --accent-glow: rgba(2, 132, 199, 0.2);
+  --pulse-color: #dc2626;
+  --shadow-card: 0 4px 18px -2px rgba(0, 0, 0, 0.07);
+  --shadow-card-hover: 0 12px 28px -4px rgba(0, 0, 0, 0.14), 0 0 18px var(--accent-glow);
+}
+
+/* ==========================================================================
+   Базові стилі та скидання (Reset & Base)
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  min-height: 100vh;
+  line-height: 1.5;
+  transition: background-color var(--transition-normal), color var(--transition-normal);
+  background-image: 
+    radial-gradient(at 10% 10%, rgba(56, 189, 248, 0.07) 0px, transparent 50%),
+    radial-gradient(at 90% 90%, rgba(99, 102, 241, 0.07) 0px, transparent 50%);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+}
+
+.dashboard-wrapper {
+  max-width: 1560px;
+  margin: 0 auto;
+  padding: 24px 28px 48px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  gap: 24px;
+}
+
+/* ==========================================================================
+   Верхня панель (Header)
+   ========================================================================== */
+.dashboard-header {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 16px 24px;
+  background: var(--bg-header);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+  gap: 20px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.greeting-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  background: var(--bg-badge);
+  color: var(--accent-color);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+.clock-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.clock-time {
+  font-size: 1.65rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: var(--text-main);
+  line-height: 1.1;
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums;
+}
+
+.clock-date {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  text-transform: capitalize;
+}
+
+/* Пошуковий рядок (Search Bar) */
+.header-center {
+  width: 100%;
+  max-width: 540px;
+}
+
+.search-form {
+  width: 100%;
+}
+
+.search-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.search-icon {
+  position: absolute;
+  left: 14px;
+  width: 18px;
+  height: 18px;
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+#search-input {
+  width: 100%;
+  padding: 12px 42px 12px 42px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: var(--text-main);
+  background: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: 9999px;
+  outline: none;
+  transition: all var(--transition-normal);
+}
+
+#search-input::placeholder {
+  color: var(--text-muted);
+  opacity: 0.8;
+}
+
+#search-input:focus {
+  background: var(--bg-input-focus);
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.search-shortcut {
+  position: absolute;
+  right: 14px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: var(--bg-page);
+  border: 1px solid var(--border-color);
+  padding: 2px 7px;
+  border-radius: 6px;
+  pointer-events: none;
+}
+
+/* Права частина верхньої панелі */
+.header-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+}
+
+.control-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+}
+
+.control-btn:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--accent-color);
+  transform: translateY(-2px);
+  color: var(--accent-color);
+}
+
+.control-btn .icon {
+  width: 20px;
+  height: 20px;
+}
+
+body.theme-dark .icon-sun {
+  display: block;
+}
+body.theme-dark .icon-moon {
+  display: none;
+}
+body.theme-light .icon-sun {
+  display: none;
+}
+body.theme-light .icon-moon {
+  display: block;
+}
+
+/* ==========================================================================
+   2-колонковий макет (Dashboard Content Grid)
+   ========================================================================== */
+.dashboard-content {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 24px;
+  align-items: start;
+}
+
+.main-column {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0;
+}
+
+.sidebar-column {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  position: sticky;
+  top: 24px;
+}
+
+/* ==========================================================================
+   ГОЛОВНИЙ ВІДЖЕТ: Alerts.in.ua (Hero Map Section)
+   ========================================================================== */
+.alerts-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: border-color var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.alerts-card:hover {
+  border-color: var(--border-card-hover);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.alerts-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.alerts-title-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Пульсуючий індикатор онлайн */
+.live-pulse-beacon {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--pulse-color);
+  position: relative;
+  flex-shrink: 0;
+}
+
+.live-pulse-beacon::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid var(--pulse-color);
+  animation: radar-pulse 1.8s infinite cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@keyframes radar-pulse {
+  0% {
+    transform: scale(0.6);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+.live-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--pulse-color);
+  letter-spacing: 0.5px;
+}
+
+.alerts-title-group h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.alerts-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: var(--bg-badge);
+  color: var(--accent-color);
+}
+
+.alerts-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.expand-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-badge);
+  border: 1px solid transparent;
+  color: var(--accent-color);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.expand-btn:hover {
+  background: var(--accent-color);
+  color: #0b0f17;
+  transform: translateY(-1px);
+}
+
+.expand-btn .icon {
+  width: 14px;
+  height: 14px;
+}
+
+.alerts-frame-container {
+  width: 100%;
+  height: 440px;
+  background: #111827;
+  position: relative;
+}
+
+.alerts-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+/* ==========================================================================
+   СЕКЦІЯ: Закріплені сайти (Quick Link Plates)
+   ========================================================================== */
+.quick-links-section {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.section-title-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.section-title-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.section-title-left h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.plates-count {
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 9999px;
+  background: var(--bg-badge);
+  color: var(--accent-color);
+}
+
+.info-tip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.tip-icon {
+  width: 15px;
+  height: 15px;
+  color: var(--accent-color);
+}
+
+/* Сітка плашок */
+.plates-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+/* Плашка сайту */
+.plate-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 18px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  transition: all var(--transition-normal);
+  cursor: pointer;
+  user-select: none;
+  min-height: 82px;
+}
+
+.plate-card:hover {
+  transform: translateY(-3px);
+  background: var(--bg-card-hover);
+  border-color: var(--border-card-hover);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.plate-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.plate-favicon-wrapper {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-page);
+  border: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  transition: transform var(--transition-fast);
+}
+
+.plate-card:hover .plate-favicon-wrapper {
+  transform: scale(1.05);
+  border-color: var(--accent-color);
+}
+
+.plate-favicon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.plate-text-group {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: 2px;
+}
+
+.plate-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-main);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.plate-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.plate-domain {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+}
+
+.plate-category-badge {
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: var(--bg-badge);
+  color: var(--accent-color);
+  white-space: nowrap;
+}
+
+/* Іконка розгортання в плашці */
+.plate-expand-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-muted);
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+  opacity: 0.6;
+}
+
+.plate-expand-icon .icon {
+  width: 18px;
+  height: 18px;
+}
+
+.plate-card:hover .plate-expand-icon {
+  opacity: 1;
+  color: var(--accent-color);
+  background: var(--bg-badge);
+  transform: scale(1.12);
+}
+
+/* ==========================================================================
+   БІЧНА ПАНЕЛЬ: Віджет погоди (Sidebar Weather Card)
+   ========================================================================== */
+.sidebar-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: border-color var(--transition-normal);
+}
+
+.sidebar-card:hover {
+  border-color: var(--border-card-hover);
+}
+
+.sidebar-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border-color);
+  background: var(--bg-card);
+}
+
+.sidebar-title-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.weather-header-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--accent-color);
+}
+
+.sidebar-title-group h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.expand-btn-sm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.expand-btn-sm:hover {
+  background: var(--bg-badge);
+  color: var(--accent-color);
+}
+
+.expand-btn-sm .icon {
+  width: 16px;
+  height: 16px;
+}
+
+.weather-widget-wrapper {
+  padding: 14px 12px;
+  min-height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-card);
+}
+
+.weather-widget-wrapper .weatherwidget-io {
+  width: 100% !important;
+}
+
+.weather-card-footer {
+  padding: 10px 18px 14px;
+  text-align: center;
+  border-top: 1px solid var(--border-color);
+}
+
+.weather-source-link {
+  font-size: 0.8rem;
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: 600;
+  transition: opacity var(--transition-fast);
+}
+
+.weather-source-link:hover {
+  text-decoration: underline;
+  opacity: 0.85;
+}
+
+/* ==========================================================================
+   Підвал (Footer)
+   ========================================================================== */
+.dashboard-footer {
+  margin-top: auto;
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--text-faint);
+  padding-top: 16px;
+}
+
+/* ==========================================================================
+   Адаптивність (Responsive Breakpoints)
+   ========================================================================== */
+@media (max-width: 1120px) {
+  .dashboard-content {
+    grid-template-columns: 1fr;
+  }
+  .sidebar-column {
+    position: static;
+  }
+}
+
+@media (max-width: 860px) {
+  .dashboard-header {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 
+      "left right"
+      "center center";
+  }
+  .header-left { grid-area: left; }
+  .header-right { grid-area: right; }
+  .header-center { 
+    grid-area: center; 
+    max-width: 100%;
+    margin-top: 4px;
+  }
+  .alerts-frame-container {
+    height: 380px;
+  }
+}
+
+@media (max-width: 640px) {
+  .dashboard-wrapper {
+    padding: 14px;
+    gap: 18px;
+  }
+  .dashboard-header {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 14px;
+    gap: 14px;
+  }
+  .header-left {
+    justify-content: space-between;
+  }
+  .header-right {
+    justify-content: flex-end;
+  }
+  .section-title-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  .plates-grid {
+    grid-template-columns: 1fr;
+  }
+  .alerts-frame-container {
+    height: 320px;
+  }
+}
