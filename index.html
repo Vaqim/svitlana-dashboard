@@ -59,9 +59,9 @@
       </div>
     </header>
 
-    <!-- Верхній блок віджетів: Мапа тривог (Alerts.in.ua) + Віджет погоди -->
+    <!-- Верхній блок віджетів: Мапа тривог (neptun.in.ua) + Віджет погоди -->
     <div class="hero-widgets-row">
-      <!-- ГОЛОВНИЙ ВІДЖЕТ: MAPA.UA (Карта тривог) -->
+      <!-- ГОЛОВНИЙ ВІДЖЕТ: NEPTUN (Карта тривог) -->
       <section class="alerts-hero-section">
         <div class="alerts-card">
           <div class="alerts-card-header">
@@ -69,7 +69,7 @@
               <span class="live-pulse-beacon" title="Оновлюється наживо"></span>
               <span class="live-label">НАЖИВО</span>
               <h3>Карта повітряних тривог України</h3>
-              <span class="alerts-badge">mapa.ua</span>
+              <span class="alerts-badge">neptun.in.ua</span>
             </div>
             <div class="alerts-header-actions">
               <button class="expand-btn" id="open-alerts-btn" title="Відкрити карту на весь екран у новій вкладці" aria-label="Відкрити карту у новій вкладці">
@@ -84,13 +84,12 @@
           </div>
           <div class="alerts-frame-container">
             <iframe
-              src="https://mapa.ua/embed"
+              src="https://neptun.in.ua/embed/map"
               class="alerts-iframe"
-              width="100%"
-              height="480"
+              style="width:100%;height:600px;border:0;border-radius:12px"
+              title="Карта повітряних тривог України — NEPTUN"
               loading="lazy"
               allowfullscreen
-              title="Карта повітряних тривог України — MAPA.UA"
             ></iframe>
           </div>
         </div>

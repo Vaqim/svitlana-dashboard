@@ -1,6 +1,6 @@
 /**
  * Web Dashboard — Головна панель вкладок
- * Головний віджет Alerts.in.ua, бічна панель погоди та швидкі плашки для сайтів
+ * Головний віджет neptun.in.ua, бічна панель погоди та швидкі плашки для сайтів
  */
 
 (function () {
@@ -168,11 +168,11 @@
    * Налаштування кнопок швидкого переходу для віджетів
    */
   function setupWidgetActions() {
-    // Відкриття Карти тривог MAPA.UA
+    // Відкриття Карти тривог NEPTUN
     if (openAlertsBtn) {
       openAlertsBtn.addEventListener('click', (e) => {
         e.stopPropagation();
-        window.open('https://mapa.ua/', '_blank', 'noopener,noreferrer');
+        window.open('https://neptun.in.ua/', '_blank', 'noopener,noreferrer');
       });
     }
 
